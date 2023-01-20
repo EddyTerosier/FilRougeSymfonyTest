@@ -65,7 +65,7 @@ body {
 }
 /* ------------------------- Début de la div banniere ------------------------- */
 .banniere {
-  background: no-repeat 40% / cover url("../Assets/img-accueil.jpg");
+  background: no-repeat 40% / cover url("/assets/img/img-accueil.jpg");
   height: 986.97px;
 }
 /* 
