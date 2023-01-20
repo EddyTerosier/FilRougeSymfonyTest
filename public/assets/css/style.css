@@ -1,0 +1,488 @@
+/* body
+{
+  background-color: #ECEFF1;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main
+{
+  flex: 1 0 auto;
+}
+
+.is_signaled
+{
+  background-color: #9E9E9E !important;
+  transition: background 0.3s;
+}
+
+.vote-form
+{
+  display: inline-block;
+}
+
+.legalNotice{
+  padding: 0 0 50px 0;
+}
+
+.footer-row{
+  margin-bottom:0;
+} */
+
+
+/* RESPONSIVE */
+
+/* @media all and (max-width: 785px){
+  .page-title
+  {
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+@media all and (max-width: 482px){
+  nav .brand-logo
+  {
+    font-size: 1.3em;
+  }
+
+  .page-title
+  {
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+  }
+} */
+/* -------------------------------------------------------- */
+
+body {
+  margin: 0;
+  font-family: "CooperHewitt";
+  overflow-x: hidden;
+}
+/* ------------------------- Début de la div banniere ------------------------- */
+.banniere {
+  background: no-repeat 40% / cover url("../Assets/img-accueil.jpg");
+  height: 986.97px;
+}
+/* 
+#vide {
+  height: 35px;
+} */
+
+
+/* ------------------------- Fin de la div banniere ------------------------- */
+
+/* ------------------------- Début du Header ------------------------- */
+
+.navbar{
+  height: 130px;
+}
+.navbar.bg-custom{
+  background-color: #35393c;
+}
+
+.collapse.navbar-collapse{
+  justify-content: space-evenly;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
+  color: #87ff65;
+}
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .show>.nav-link {
+  color: #9aa49a;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .show>.nav-link:hover {
+  color: #87ff65;
+}
+
+.btn-outline-custom {
+  color: #87ff65;
+  border-color: #87ff65;
+}
+
+.dropdown-item{
+  text-align: center;
+}
+
+/* ------------------------- Fin du Header ------------------------- */
+
+/* ------------------------- Début du main ------------------------- */
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 300px;
+}
+
+main h1 {
+  margin-left: 80px;
+  margin-top: 50px;
+  color: white;
+}
+
+main span h1 {
+  font-family: "Stencil";
+}
+
+main h1 strong {
+  color: #87ff65;
+}
+
+iframe {
+  border-radius: 10px;
+  min-width: 30vh;
+  height: 315px;
+  max-height: 430px;
+  margin: 10px;
+}
+
+/* ------------------------- Fin du main ------------------------- */
+
+/* ------------------------- Début de la div Banniere 2 ------------------------- */
+
+
+.banniere_2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #35393c;
+  color: #9aa49a;
+  height: 300px;
+  padding: 20px;
+}
+
+.banniere_2 h1 {
+  font-family: "Stencil";
+}
+
+.banniere_2 span {
+  text-align: center;
+  font-size: 20px;
+}
+
+/* ------------------------- Fin de la div Banniere 2 ------------------------- */
+
+/* ------------------------- Début de la div Banniere 3 ------------------------- */
+
+
+.banniere_3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #c0cac0;
+  height: 190px;
+}
+
+.banniere_3 h1 {
+  margin-top: 10px;
+  text-align: center;
+  font-family: "CooperHewitt";
+}
+
+.banniere_3 input {
+  height: 50px;
+  width: 210px;
+  background-color: #35393C;
+  color: #87ff65;
+  border-radius: 4px;
+  border-color: #9aa49a;
+  box-shadow: black 0 5px 7px;
+  text-align: center;
+}
+
+.banniere_3 .btn-outline-custom {
+  height: 50px;
+  width: 60px;
+  background-color: #9aa49a;
+  color: #87ff65;
+  border-radius: 4px;
+  border: none;
+  box-shadow: black 0 5px 7px;
+}
+
+/* ------------------------- Fin de la div Banniere 3 ------------------------- */
+
+/* ------------------------- Début de la div Banniere 4 ------------------------- */
+
+
+.banniere_4 {
+  background-color: #9aa49a;
+  padding: 20px 0;
+}
+.banniere_4 h1 {
+  font-family: "Stencil";
+  text-align: center;
+}
+.banniere_4 span {
+  text-align: center;
+  font-size: 20px;
+}
+
+.champs {
+  height: 30px;
+  background-color: #35393C;
+  color: #87ff65;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: #9aa49a;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* Test de style */
+
+.sign_in_card {
+  display: flex;
+  justify-content: center;
+}
+
+.card_content_fieldset {
+  background-color: #35393C;
+  border-radius: 4px;
+  border: none;
+  box-shadow: black 0 5px 5px;
+  width: 300px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card_content_fieldset .btn_sign_in {
+  background-color: #c0cac0;
+  border-radius: 4px;
+  border-color: #35393C;
+  color: #35393C;
+}
+
+.first-legend {
+  border: 1px solid #35393C;
+  border-radius: 3px;
+  background-color: #9aa49a;
+  color: #35393C;
+  font-weight: 700;
+  box-shadow: black 0 5px 5px;
+}
+
+legend {
+  color: #87ff65;
+  margin-top: 5px;
+}
+
+div .champs-sexe label {
+  color: #9aa49a;
+}
+
+.champs {
+  color: #87ff65;
+  border-color: #9aa49a;
+  margin-bottom: 5px;
+}
+
+/* ------------------------- Fin de la div Banniere 4 ------------------------- */
+
+
+/* Début footer */
+
+.py-5 {
+  background-color: #35393C;
+  color: #87ff65;
+  padding: 0 20px;
+}
+
+.row {
+  margin-right: 0;
+}
+
+.d-flex .btn-custom {
+  font-weight: 700;
+  color: #87ff65;
+  border-radius: 4px;
+  border-bottom: solid, #9aa49a;
+  box-shadow: black 0 5px 5px;
+}
+
+ul img {
+  vertical-align: 0px;
+}
+
+footer button:hover, button:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important; }
+
+footer a {
+  color: #9aa49a;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #9aa49a;
+  opacity: 50%;
+}
+footer .social-media1 a:hover{
+  color: #3b5998;
+}
+
+footer .social-media2 a:hover{
+  color: #1DA1F2;
+}
+
+footer .social-media3 a:hover{
+  color:  #5851DB;
+}
+
+/* Fin footer */
+
+
+/* MEDIA QUERY TABLETTE */
+
+@media screen and (min-width: 768px) and (max-width:1023px) {
+  body {
+      font-size: 1.2rem;
+  }
+
+  iframe {
+      width: 600px;
+      height: 320px;
+  }
+
+  .banniere_4{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .banniere_4 .sign_in_card {
+      margin-left: 0px;
+  }
+  .card_content_fieldset {
+      width: 450px;
+  }
+  .champs{
+      width: 375px;
+      height: 40px;
+  }
+  .btn-sexe {
+      display: flex;
+      justify-content: space-around;
+  }
+  footer form {
+      width: 300px;
+  }
+  
+}
+
+/* MEDIA QUERY DESKTOP */
+
+@media screen and (min-width: 1024px){
+  body {
+      font-size: 1.5rem;
+  }
+
+  main {
+      row-gap: 250px;
+  }
+  iframe {
+      width: 750px;
+      height: 380px;
+  }
+
+  .banniere_3 {
+      display: flex;
+      flex-direction: row;
+  }
+
+  .banniere_4{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  }
+  .banniere_4 span {
+      width: 400px;
+  }
+
+  .card_content_fieldset {
+      width: 500px;
+  }
+  .btn-sexe {
+      display: flex;
+      justify-content: space-around;
+  }
+
+  footer form {
+      width: 400px;
+  }
+  /* ANIMATIONS */
+
+.banniere_2 .box {
+  transform: translateX(-100%);
+  opacity: 0!important;
+  transition: 0.5s ease;
+}
+.banniere_2 .box.box1 {
+  transform: translateX(10%);
+  opacity: 0!important;
+  transition: 0.5s ease;
+}
+.banniere_3 .box {
+  transform: translateX(-100%);
+  opacity: 0!important;
+  transition: 0.7s ease;
+}
+.banniere_3 .box.box1 {
+  transform: translateX(100%);
+  opacity: 0!important;
+  transition: 0.7s ease;
+}
+
+.banniere_4 .box {
+  transform: translateX(-50%);
+  opacity: 0!important;
+  transition: 0.7s ease;
+}
+.banniere_4 .box.box1 {
+  transform: translateY(200px);
+  opacity: 0!important;
+  transition: 0.7s ease;
+}
+
+.box.show,.box.box1.show {
+  transform: translateX(0);
+  opacity: 1!important;
+}
+/* ANIMATION TEST */
+.btn_sign_in {
+  animation: wiggle 2s linear infinite;
+}
+
+/* Keyframes */
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+}
