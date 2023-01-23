@@ -41,11 +41,33 @@ const activeState = (e)=>{
 }
 
 function activeAccueil() {
+  const buttons = document.querySelectorAll("nav")
   const id = 1;
   const idArray = ["0","1","2","3"]
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", function() {
+      idArray.forEach((element) => {
+        document.getElementById(element).classList.remove("active");
+      });
+      document.getElementById(id).classList.add("active");
+    });
+  });
 
   idArray.forEach((element)=> {
       document.getElementById(element).classList.remove("active")
   });
   document.getElementById(id).classList.add("active");
 }
+
+const buttons = document.querySelectorAll("nav");
+const idArray = ["1", "2", "3", "4", "5"];
+
+buttons.forEach((button) => {
+  button.addEventListener("click", function() {
+    idArray.forEach((element) => {
+      document.getElementById(element).classList.remove("active");
+    });
+    this.classList.add("active");
+  });
+});
