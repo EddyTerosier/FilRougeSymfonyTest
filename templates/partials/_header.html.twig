@@ -10,7 +10,7 @@
 				<ul class="navbar-nav align-items-end">
 
 					<li class="nav-item <?php echo ($_GET['a']=="index")?"><Link to="/"><a id = "1" class="nav-link active" href="{{ path('app_home') }}" aria-current="page" onclick="activeState()">Accueil</a></Link></li>
-					<li class="nav-item <?php echo ($_GET['a']=="chapters")?"><a id = "2" class="nav-link" href="<?=ROOT_URL?>dreamgym_programmes.html" onclick="activeState()">Programmes</a></li>
+					<li class="nav-item <?php echo ($_GET['a']=="chapters")?"><a id = "2" class="nav-link" href="{{ path('app_programmes') }}" onclick="activeState()">Programmes</a></li>
 					{# <?php if (empty($_SESSION['is_admin']) && empty($_SESSION['is_user'])): ?> #}
 					<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Giga+</a>

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dream-Gym - Programmes{% endblock %}
+
+{% block body %}
+    <div class="backgroundProgramme">
+      <h1 class="pb-3 mb-4 font-italic border-bottom">Nos programmes</h1>
+      <div class="container card1">
+        <div class="row">
+        {% for programme in programmes %}
+            <div class="col-md-4">
+                <div class="card mb-4 text-white bg-dark">
+                    <img class="card-img-top" src="{{programme.image}}"/>  
+                    <div class="card-body">
+                        <h5 class="card-title">{{programme.name}}</h5>
+                        <p class="card-text">{{programme.description}}</p>
+                        <a href="#" class="btn btn-outline-custom btn-sm btn-read-more">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+{% endblock %}
