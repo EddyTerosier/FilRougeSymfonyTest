@@ -3,11 +3,23 @@
 namespace App\DataFixtures;
 
 use App\Entity\Programmes;
+use App\Entity\User;
+use Faker\Factory;
+use Faker\Generator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+    /**
+     * @var Generator
+     */
+    private Generator $faker;
+
+    public function __construct()
+    {
+        $this->faker = Factory::create('fr_FR');
+    }
     public function load(ObjectManager $manager): void
     {
         $programme = new Programmes();
@@ -26,6 +38,17 @@ class AppFixtures extends Fixture
         $manager->persist($programme);
         $manager->persist($programme2);
         $manager->persist($programme3);
+        // Users
+        for ($i = 0; $i < 5; $i++) {
+            $user = new User();
+            $user->setFirstName($this->faker->firstName())
+                ->setLastName($this->faker->lastName())
+                ->setEmail($this->faker->email())
+                ->setRoles(['ROLE_USER'])
+                ->setPlainPassword('password');
+            $manager->persist($user);
+        }
+
         $manager->flush();
     }
 }
