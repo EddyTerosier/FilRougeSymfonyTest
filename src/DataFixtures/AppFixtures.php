@@ -13,15 +13,15 @@ class AppFixtures extends Fixture
         $programme = new Programmes();
         $programme->setName('Débutant')
             ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel.jpg');
+            ->setImage('./assets/img/Carousel-1.jpg');
         $programme2 = new Programmes();
         $programme2->setName('Intermédiaire')
             ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel3.jpg');
+            ->setImage('./assets/img/Carousel-3.jpg');
         $programme3 = new Programmes();
         $programme3->setName('Expert')
             ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel2.jpg');
+            ->setImage('./assets/img/Carousel-2.jpg');
 
         $manager->persist($programme);
         $manager->persist($programme2);

@@ -54,22 +54,33 @@ class ProgrammesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                $imageFile = $form->get('image')->getData();
-                if ($imageFile) {
-                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                    $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-    
-                    try {
-                        $imageFile->move(
-                            $this->getParameter('upload_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
-                    $programmes->setImage($newFilename);
+            $imageFile = $form->get("image")->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo(
+                    $imageFile->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $safeFilename = transliterator_transliterate(
+                    "Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()",
+                    $originalFilename
+                );
+                $newFilename =
+                    $safeFilename .
+                    "-" .
+                    uniqid() .
+                    "." .
+                    $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter("upload_directory"),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
                 }
+                $programmes->setImage($newFilename);
+            }
             $programmes = $form->getData();
 
             $manager->persist($programmes); // comme le commit la consigne de l'envoyer est faite
@@ -98,13 +109,80 @@ class ProgrammesController extends AbstractController
             methods: ["GET", "POST"]
         )
     ]
-    public function edit(ProgrammesRepository $repository, int $id): Response
-    {
-        $programmes = $repository->findOneBy(["id" => $id]);
+    public function edit(
+        Programmes $programmes,
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $form = $this->createForm(ProgrammesType::class, $programmes);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get("image")->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo(
+                    $imageFile->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $safeFilename = transliterator_transliterate(
+                    "Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()",
+                    $originalFilename
+                );
+                $newFilename =
+                    $safeFilename .
+                    "-" .
+                    uniqid() .
+                    "." .
+                    $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter("upload_directory"),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $programmes->setImage($newFilename);
+            }
+            $programmes = $form->getData();
+
+            $manager->persist($programmes); // comme le commit la consigne de l'envoyer est faite
+            $manager->flush(); // comme le push on envoie vrmt les données
+
+            $this->addFlash(
+                "success",
+                "Votre programme a été modifié avec succès !"
+            );
+
+            return $this->redirectToRoute("app_programmes");
+        }
+
         $form = $this->createForm(ProgrammesType::class, $programmes);
 
         return $this->render("programmes/edit.html.twig", [
             "form" => $form->createView(),
         ]);
+    }
+    #[Route("/programmes/suppression/{id}", name: "programmes_delete", methods: ['GET'])]
+    public function delete(EntityManagerInterface $manager, Programmes $programmes): Response
+    {
+        if(!$programmes){
+            $this->addFlash(
+                "success",
+                "Le programme en question n'a pas été trouvé !"
+            );
+        return $this->redirectToRoute('app_programmes');
+        }
+        $manager->remove($programmes);
+        $manager->flush();
+
+        $this->addFlash(
+            "danger",
+            "Votre programme a été supprimé avec succès !"
+        );
+
+        return $this->redirectToRoute('app_programmes');
     }
 }

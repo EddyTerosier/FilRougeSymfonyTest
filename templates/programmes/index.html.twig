@@ -12,6 +12,12 @@
             </div>
             
         {% endfor %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger mt-4 text-center">
+                {{message}}
+            </div>
+            
+        {% endfor %}
 
       <div class="container card1">
         <div class="row">
@@ -20,9 +26,11 @@
                 <div class="card mb-4 text-white bg-dark">
                     <img class="card-img-top" src="{{programme.image}}"/>  
                     <div class="card-body">
-                        <h5 class="card-title">{{programme.name}} {{programme.id}}</h5>
+                        <h5 class="card-title">{{programme.name}}</h5>
                         <p class="card-text">{{programme.description}}</p>
                         <a href="#" class="btn btn-outline-custom btn-sm btn-read-more">Voir plus</a>
+                        <a href="{{path('programmes_edit', {id: programme.id})}}" class="btn btn-outline-custom btn-sm btn-read-more">Modifier</a>
+                        <a href="{{path('programmes_delete', {id: programme.id})}}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce programme ?');" class="btn btn-outline-custom btn-sm btn-read-more">Supprimer</a>
                     </div>
                 </div>
             </div>
