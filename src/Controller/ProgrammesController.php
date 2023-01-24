@@ -168,13 +168,6 @@ class ProgrammesController extends AbstractController
     #[Route("/programmes/suppression/{id}", name: "programmes_delete", methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Programmes $programmes): Response
     {
-        if(!$programmes){
-            $this->addFlash(
-                "success",
-                "Le programme en question n'a pas été trouvé !"
-            );
-        return $this->redirectToRoute('app_programmes');
-        }
         $manager->remove($programmes);
         $manager->flush();
 
