@@ -1,38 +1,47 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
     <div class="backgroundProgramme">
     <div class="container col-md-6">
         <h1 class="pt-4">
-            Création d'un nouveau programme
+            Modification du programme
         </h1>
 
         {{ form_start(form) }}
 
+        {% if form.name is defined %}
         <div class="form-group">
-            {{form_label(form.name)}}
+            {{ form_label(form.name) }}
             {{ form_widget(form.name) }}
             {{ form_errors(form.name) }}
         </div>
+        {% endif %}
         
+        {% if form.description is defined %}
         <div class="form-group">
-            {{form_label(form.description)}}
+            {{ form_label(form.description) }}
             {{ form_widget(form.description) }}
             <div class="form-error">
             {{ form_errors(form.description) }}
             </div>
         </div>
+        {% endif %}
         
+        {% if form.image is defined %}
         <div class="form-group">
-            {{form_label(form.image)}}
+            {{ form_label(form.image) }}
             {{ form_widget(form.image) }}
             <div class="form-error">
             {{ form_errors(form.image) }}
             </div>
         </div>
+        {% endif %}
         
+        {% if form.submit is defined %}
         <div class="form-group">
-            {{form_row(form.submit)}}
+            {{ form_row(form.submit) }}
         </div>
+        {% endif %}
 
         </div>
         {{ form_end(form) }}

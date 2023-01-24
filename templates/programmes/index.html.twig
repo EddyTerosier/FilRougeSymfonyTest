@@ -5,6 +5,14 @@
 {% block body %}
     <div class="backgroundProgramme">
       <h1 class="pb-3 mb-4 font-italic border-bottom">Nos programmes</h1>
+      
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4 text-center">
+                {{message}}
+            </div>
+            
+        {% endfor %}
+
       <div class="container card1">
         <div class="row">
         {% for programme in programmes %}
@@ -12,7 +20,7 @@
                 <div class="card mb-4 text-white bg-dark">
                     <img class="card-img-top" src="{{programme.image}}"/>  
                     <div class="card-body">
-                        <h5 class="card-title">{{programme.name}}</h5>
+                        <h5 class="card-title">{{programme.name}} {{programme.id}}</h5>
                         <p class="card-text">{{programme.description}}</p>
                         <a href="#" class="btn btn-outline-custom btn-sm btn-read-more">Voir plus</a>
                     </div>
@@ -20,6 +28,9 @@
             </div>
         {% endfor %}
         </div>
+      </div>
+      <div class="container d-flex justify-content-center mt-4">
+        <a href="{{ path('programmes_new')}}" class="btn btn-primary mb-4">Créer un programme</a>
       </div>
     </div>
 {% endblock %}

@@ -16,61 +16,63 @@ use Symfony\Component\Validator\Constraints\File;
 
 class ProgrammesType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
-            ->add('name', TextType::class,[
+            ->add("name", TextType::class, [
                 "attr" => [
                     "class" => "form-control",
-                    "minlength" => "2"
+                    "minlength" => "2",
                 ],
                 "label" => "Nom",
                 "label_attr" => [
-                    "class" => "form-label mt-4"
+                    "class" => "form-label mt-4",
                 ],
                 "constraints" => [
-                    new Assert\Length(['min'=>2]),
-                    new Assert\NotBlank()
-                ]
+                    new Assert\Length(["min" => 2]),
+                    new Assert\NotBlank(),
+                ],
             ])
-            ->add('description', TextareaType::class,[
+            ->add("description", TextareaType::class, [
                 "attr" => [
                     "class" => "form-control",
-                    "minlength" => "2"
+                    "minlength" => "2",
                 ],
-                "label" => "Description",
+                "label" => "Déscription",
                 "label_attr" => [
-                    "class" => "form-label mt-4"
+                    "class" => "form-label mt-4",
                 ],
-                "constraints" => [
-                    new Assert\NotBlank()
-                ]
-                ])
-            ->add('image', FileType::class, [
-                "label" => "Insérer votre image",
+                "constraints" => [new Assert\NotBlank()],
+            ])
+            ->add("image", FileType::class, [
+                "mapped" => false,
+                "required" => false,
+                "attr" => [
+                    "class" => "form-control"
+                ],
                 "label_attr" => [
-                    "class" => "form-label mt-4 " 
+                    "class" => "form-label mt-4 ",
                 ],
-                "constraints" => [
+                'constraints' => [
                     new File([
-                        "maxSize" => "5000k",
-                        "mimeTypesMessage" => "Veuillez insérer une image valide"
+                        'maxSize' => '50000k'
                     ])
                 ]
             ])
             ->add("submit", SubmitType::class, [
                 "label" => "Valider",
                 "attr" => [
-                    "class" => "btn btn-primary"
-                ]
-            ])
-        ;
+                    "class" => "btn btn-primary mt-4 mb-4",
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Programmes::class,
+            "data_class" => Programmes::class,
         ]);
     }
 }
