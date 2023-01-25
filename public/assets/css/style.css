@@ -457,12 +457,12 @@ footer .social-media3 a:hover{
   opacity: 1!important;
 }
 /* ANIMATION TEST */
-.btn_sign_in {
+/* .btn_sign_in {
   animation: wiggle 2s linear infinite;
-}
+} */
 
 /* Keyframes */
-@keyframes wiggle {
+/* @keyframes wiggle {
   0%, 7% {
     transform: rotateZ(0);
   }
@@ -484,5 +484,5 @@ footer .social-media3 a:hover{
   40%, 100% {
     transform: rotateZ(0);
   }
-}
+} */
 }

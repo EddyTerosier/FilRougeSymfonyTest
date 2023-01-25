@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\ProgrammesRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,7 +23,7 @@ class Programmes
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $image = null;
 
     public function getId(): ?int
