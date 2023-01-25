@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de l'utilisateur - Dream-Gym{% endblock %}
+
+{% block body %}
+    <div class="container-connexion d-flex flex-column align-items-center">
+        <h1 class="mt-4">Modification des infos utilisateurs</h1>
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning mt-4">
+                {{message}}
+            </div>
+        {% endfor %}
+        {{form(form)}}
+        <hr class="border-light w-100 my-5">
+    </div>
+{% endblock %}
