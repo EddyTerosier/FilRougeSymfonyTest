@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Modification - Dream-Gym{% endblock %}
+
 {% block body %}
-    <div class="backgroundProgramme">
+    <div class="container-connexion d-flex flex-column align-items-center">
     <div class="container col-md-6">
         <h1 class="pt-4">
             Modification du programme
@@ -45,6 +47,7 @@
 
         </div>
         {{ form_end(form) }}
+    <hr class="border-light w-100 my-5">
     </div>
     </div>
 {% endblock %}
