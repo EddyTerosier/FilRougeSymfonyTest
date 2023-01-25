@@ -57,9 +57,14 @@ main
   }
 } */
 /* -------------------------------------------------------- */
+*,::after,::before {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   margin: 0;
+  padding: 0;
   font-family: "CooperHewitt";
   overflow-x: hidden;
 }
@@ -486,3 +491,13 @@ footer .social-media3 a:hover{
   }
 } */
 }
+
+/* ------------------------- Début connexion ------------------------- */
+
+.container-connexion {
+  background-color: #35393c;
+  color: #9aa49a;
+}
+
+
+/* ------------------------- Fin Connexion -------------------------------- */

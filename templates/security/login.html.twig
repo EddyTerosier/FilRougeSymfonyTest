@@ -3,15 +3,15 @@
 {% block title %}Connexion - Dream-Gym{% endblock %}
 
 {% block body %}
-    <div class="banniere_2">
+    <div class="container-connexion d-flex flex-column align-items-center">
     {% if error %}
         <div class="alert alert-danger" role="alert">
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-        <h1 class="mt-4">Formulaire de connexion</h1>
+        <h1 class="my-4">Formulaire de connexion</h1>
 
-        <form action="{{path('app_login')}}" method="post" class="d-flex flex-column align-items-center col-8">
+        <form action="{{path('app_login')}}" method="post" class="d-flex flex-column align-items-center col-8 my-5">
             <div class="form-group mb-3 col-md-4">
               <label for="username" class="form-label">Email</label>
               <input type="email" class="form-control border border-dark" name="_username" id="username" aria-describedby="emailHelpId" placeholder="email@dreamgym.com" value="{{ last_username }}">
@@ -22,5 +22,6 @@
             </div>
             <button class="btn btn-success mt-4" type="submit">Se connecter</button>
         </form>
+        <hr class="border-light w-100 my-5">
     </div>
 {% endblock %}
