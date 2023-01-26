@@ -21,12 +21,23 @@ class UserPasswordType extends AbstractType
         $builder
             //-------------- PASSWORD --------------
 
-            ->add("plainPassword", PasswordType::class, [
+            ->add("plainPassword", RepeatedType::class, [
+                'type'=> PasswordType::class,
+                'first_options'=>[
                     'label'=>'Mot de passe',
                     'attr' => [
                         "class"=>"form-control",
-                        "placeholder"=>"Mot de passe",
+                        "placeholder"=>"Veuillez saisir un mot de passe",
                     ]
+                ],
+                'second_options'=>[
+                    'label'=>'Confirmation du mot de passe',
+                    'attr' => [
+                        "class"=>"form-control",
+                        "placeholder"=>"Confirmez votre mot de passe",
+                    ]
+                ],
+                'invalid_message'=>'Les mots de passe saisis ne correspondent pas'
             ])
             ->add('newPassword', PasswordType::class, [
                 'attr' => [
