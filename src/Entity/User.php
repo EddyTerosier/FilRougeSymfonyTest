@@ -25,6 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private array $roles = [];
 
     /**
@@ -35,7 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = 'password';
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank()]
     private ?string $firstName = null;
 
     #[ORM\Column]
@@ -48,7 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank()]
     private ?string $lastName = null;
 
     private ?string $plainPassword = null;

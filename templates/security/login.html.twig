@@ -1,32 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion - Dream-Gym{% endblock %}
+{% block title %}
+    Connexion - Dream-Gym
+{% endblock %}
 
 {% block body %}
     <div class="container-connexion d-flex flex-column align-items-center">
-    {% for message in app.flashes('success') %}
+        {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4 text-center">
-                {{message}}
+                {{ message }}
             </div>
-    {% endfor %}
-    {% if error %}
-        <div class="alert alert-danger" role="alert">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
-    {% endif %}
-        <h1 class="my-4">Formulaire de connexion</h1>
+        {% endfor %}
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+        <h1 class="my-4">
+            Formulaire de connexion
+        </h1>
 
-        <form action="{{path('app_login')}}" method="post" class="d-flex flex-column align-items-center col-8 my-5">
+        <form action="{{ path('app_login') }}"
+            method="post"
+            class="d-flex flex-column align-items-center col-8 my-5">
             <div class="form-group mb-3 col-md-4">
-              <label for="username" class="form-label">Email</label>
-              <input type="email" class="form-control" name="_username" id="username" aria-describedby="emailHelpId" placeholder="email@dreamgym.com" value="{{ last_username }}">
+                <label for="username" class="form-label">Email</label>
+                <input type="email"
+                    class="form-control"
+                    name="_username"
+                    id="username"
+                    aria-describedby="emailHelpId"
+                    placeholder="email@dreamgym.com"
+                    value="{{ last_username }}" />
             </div>
             <div class="form-group mb-3 col-md-4">
-              <label for="password" class="form-label">Mot de passe</label>
-              <input type="password" class="form-control" name="_password" id="password" placeholder="Entrez votre mot de passe">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password"
+                    class="form-control"
+                    name="_password"
+                    id="password"
+                    placeholder="Entrez votre mot de passe" />
             </div>
-            <button class="btn btn-success mt-4" type="submit">Se connecter</button>
+            <button class="btn btn-success mt-4" type="submit">
+                Se connecter
+            </button>
         </form>
-        <hr class="border-light w-100 my-5">
+        <hr class="border-light w-100 my-5" />
     </div>
 {% endblock %}
