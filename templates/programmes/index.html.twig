@@ -29,16 +29,20 @@
                         <h5 class="card-title">{{programme.name}}</h5>
                         <p class="card-text">{{programme.description}}</p>
                         <a href="#" class="btn btn-outline-custom btn-sm btn-read-more">Voir plus</a>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{path('programmes_edit', {id: programme.id})}}" class="btn btn-outline-custom btn-sm btn-read-more">Modifier</a>
                         <a href="{{path('programmes_delete', {id: programme.id})}}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce programme ?');" class="btn btn-outline-custom btn-sm btn-read-more">Supprimer</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
         </div>
       </div>
+      {% if is_granted('ROLE_ADMIN') %}
       <div class="container d-flex justify-content-center mt-4">
         <a href="{{ path('programmes_new')}}" class="btn btn-success mb-4">Créer un programme</a>
       </div>
+      {% endif %}
     </div>
 {% endblock %}

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ProgrammesController extends AbstractController
 {
@@ -44,6 +45,7 @@ class ProgrammesController extends AbstractController
             methods: ["GET", "POST"]
         )
     ]
+    // #[IsGranted('ROLE_ADMIN')]
     public function new(
         Request $request,
         EntityManagerInterface $manager
@@ -109,6 +111,7 @@ class ProgrammesController extends AbstractController
             methods: ["GET", "POST"]
         )
     ]
+    // #[IsGranted('ROLE_ADMIN')]
     public function edit(
         Programmes $programmes,
         Request $request,
@@ -166,6 +169,7 @@ class ProgrammesController extends AbstractController
         ]);
     }
     #[Route("/programmes/suppression/{id}", name: "programmes_delete", methods: ['GET'])]
+    // #[IsGranted('ROLE_ADMIN')]
     public function delete(EntityManagerInterface $manager, Programmes $programmes): Response
     {
         $manager->remove($programmes);

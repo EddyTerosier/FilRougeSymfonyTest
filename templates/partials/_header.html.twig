@@ -14,8 +14,13 @@
 					<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Giga+</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
+					{% if app.user %}
+					        <a href="{{ path("app_user", {id: app.user.id}) }}" class="dropdown-item">Mon compte <br><small>({{ app.user.firstname }})</small></a>
+							<a href="{{ path("app_logout") }}" class="dropdown-item">Déconnexion</a>
+					{% else %}
                             <a class="dropdown-item" id="4" href="{{path('app_registration')}}">Inscription</a>
                             <a class="dropdown-item" id="5" href="{{path('app_login')}}">Connexion</a>
+					{% endif %}
                         </div>
                     </li>
 					{# <?php endif ?>
