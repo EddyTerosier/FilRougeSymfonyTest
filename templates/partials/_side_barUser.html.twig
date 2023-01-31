@@ -1,0 +1,16 @@
+<div class="container d-flex flex-column align-items-center col-md-4 my-5">
+    <h1>
+        Mes informations
+    </h1>
+    <div class="list-group my-5 w-75">
+        <a href="{{path('app_user', {id:app.user.id})}}" class="list-group-item list-group-item-action bg-secondary text-white">
+            Modifier mes informations
+        </a>
+        <a href="{{path('app_user_password', {id: app.user.id})}}" class="list-group-item list-group-item-action bg-secondary text-white">
+            Modifier le mot de passe
+        </a>
+        <a href="#" class="list-group-item text-white list-group-item-action bg-danger">
+            Supprimer mon compte
+        </a>
+    </div>
+</div>
