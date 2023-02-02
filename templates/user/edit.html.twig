@@ -11,6 +11,10 @@
             </div>
         {% endfor %}
         {{form(form)}}
+        {% if app.user %}
+        <br>
+        <a class="btn btn-secondary" href="{{ path('app_account', {id: app.user.id}) }}">Retour à mon compte</a>   
+        {% endif %}
         <hr class="border-light w-100 my-5">
     </div>
 {% endblock %}
