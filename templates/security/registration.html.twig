@@ -4,6 +4,12 @@
 
 {% block body %}
     <div class="container-connexion d-flex flex-column align-items-center">
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger mt-4 text-center">
+                {{message}}
+            </div>
+            
+        {% endfor %}
         <h1 class="my-4">Formulaire d'inscription</h1>
         {{form(form)}}
     <hr class="border-light w-100 my-5">

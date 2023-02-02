@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ProgrammesController extends AbstractController
 {
@@ -111,6 +112,8 @@ class ProgrammesController extends AbstractController
             methods: ["GET", "POST"]
         )
     ]
+    // #[Security("is_granted('ROLE_ADMIN') and admin === programmes.getUser()")]
+    // La ligne du dessus permet aux admins qui ont créer un programme de ne modifié que ceux qu'ils ont crée et auncun autre
     // #[IsGranted('ROLE_ADMIN')]
     public function edit(
         Programmes $programmes,

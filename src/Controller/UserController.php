@@ -77,6 +77,15 @@ class UserController extends AbstractController
         EntityManagerInterface $manager,
         UserPasswordHasherInterface $hasher
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("app_login");
+        }
+
+        if ($this->getUser() !== $user) {
+            return $this->redirectToRoute("app_home");
+        }
+
         $form = $this->createForm(UserPasswordType::class, $user);
         $form->handleRequest($request);
 
@@ -129,5 +138,14 @@ class UserController extends AbstractController
         }
 
         return $this->render("user/account_user.html.twig");
+    }
+    #[Route("/utilisateur/suppression/{id}", name: "app_user_delete", methods: ['GET'])]
+    // #[IsGranted('ROLE_ADMIN')]
+    public function deleteUser(EntityManagerInterface $manager, User $user): Response
+    {
+        $manager->remove($user);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_home');
     }
 }

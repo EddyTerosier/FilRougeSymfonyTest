@@ -9,7 +9,7 @@
         <a href="{{path('app_user_password', {id: app.user.id})}}" class="list-group-item list-group-item-action bg-secondary text-white">
             Modifier le mot de passe
         </a>
-        <a href="#" class="list-group-item text-white list-group-item-action bg-danger">
+        <a href="{{ path('app_user_delete', {id: app.user.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer votre compte {{app.user.firstName}} ?');" class="list-group-item text-white list-group-item-action bg-danger">
             Supprimer mon compte
         </a>
     </div>

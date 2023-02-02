@@ -38,6 +38,7 @@ class AppFixtures extends Fixture
         $manager->persist($programme);
         $manager->persist($programme2);
         $manager->persist($programme3);
+
         // Users
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
