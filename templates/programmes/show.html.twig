@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{programmes.name}} - Dream-Gym{% endblock %}
+
+{% block body %}
+    <div class="container-connexion d-flex flex-column text-center">
+            <h1 class="">{{programmes.name}}</h1>
+        <div class="card-description">
+            <p>
+            {{programmes.description}}
+            <br>
+            {{programmes.description}}
+            <br>
+            {{programmes.description}}
+            </p>
+            <p>
+                Note sur 5 : 
+                {% for i in 0..programmes.average %}
+                    <i class="fa fa-star"></i>
+                {% endfor %}
+            </p>
+            <a href="{{ path('app_programmes')}}" class="btn btn-outline-custom btn-sm btn-read-more">Retourner aux programmes</a>
+        </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

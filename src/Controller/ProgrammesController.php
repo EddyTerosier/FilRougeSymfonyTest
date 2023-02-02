@@ -185,4 +185,12 @@ class ProgrammesController extends AbstractController
 
         return $this->redirectToRoute('app_programmes');
     }
+
+    #[Route("/programme/{id}", name: "app_programme_description",methods: ['GET'])]
+    public function programmeShow(Programmes $programmes): Response
+    {
+        return $this->render("programmes/show.html.twig", [
+            "programmes" => $programmes
+        ]);
+    }
 }
