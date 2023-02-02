@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Programmes;
 use App\Entity\User;
+use App\Entity\Mark;
 use Faker\Factory;
 use Faker\Generator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -22,24 +23,40 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-        $programme = new Programmes();
-        $programme->setName('Débutant')
-            ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel-1.jpg');
-        $programme2 = new Programmes();
-        $programme2->setName('Intermédiaire')
-            ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel-3.jpg');
-        $programme3 = new Programmes();
-        $programme3->setName('Expert')
-            ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-            ->setImage('./assets/img/Carousel-2.jpg');
+        $number = 0;
+        $programmes = [];
+        for ($i = 1; $i <= 3; $i++) {
+            $number++;
+            $programme = new Programmes();
+            $programme
+                ->setName('Débutant')
+                ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
+                ->setImage('./assets/img/Carousel-' . $number . '.jpg');
 
-        $manager->persist($programme);
-        $manager->persist($programme2);
-        $manager->persist($programme3);
+            $programmes[] = $programme;
+            $manager->persist($programme);
+        }
+        // $programmes = [];
+        // $programme = new Programmes();
+        // $programme->setName('Débutant')
+        //     ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
+        //     ->setImage('./assets/img/Carousel-1.jpg');
+        // $programme2 = new Programmes();
+        // $programme2->setName('Intermédiaire')
+        //     ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
+        //     ->setImage('./assets/img/Carousel-3.jpg');
+        // $programme3 = new Programmes();
+        // $programme3->setName('Expert')
+        //     ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
+        //     ->setImage('./assets/img/Carousel-2.jpg');
+
+        // $programmes[] = [$programme, $programme2, $programme3];
+        // $manager->persist($programme);
+        // $manager->persist($programme2);
+        // $manager->persist($programme3);
 
         // Users
+        $users = [];
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
             $user->setFirstName($this->faker->firstName())
@@ -47,7 +64,19 @@ class AppFixtures extends Fixture
                 ->setEmail($this->faker->email())
                 ->setRoles(['ROLE_USER'])
                 ->setPlainPassword('password');
+            $users[] = $user;
             $manager->persist($user);
+        }
+
+        // Marks
+        foreach ($programmes as $programme) {
+            for ($i=0; $i < mt_rand(0,4); $i++) { 
+                $mark = new Mark();
+                $mark->setMark(mt_rand(1, 5))
+                    ->setUser($users[mt_rand(0, count($users) - 1)])
+                    ->setProgrammes($programme);
+                $manager->persist($mark);
+            }
         }
 
         $manager->flush();

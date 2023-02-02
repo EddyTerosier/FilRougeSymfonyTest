@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProgrammesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,6 +27,14 @@ class Programmes
 
     #[ORM\Column(length: 255, nullable:true)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'programmes', targetEntity: Mark::class, orphanRemoval: true)]
+    private Collection $marks;
+
+    public function __construct()
+    {
+        $this->marks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -63,6 +73,36 @@ class Programmes
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mark>
+     */
+    public function getMarks(): Collection
+    {
+        return $this->marks;
+    }
+
+    public function addMark(Mark $mark): self
+    {
+        if (!$this->marks->contains($mark)) {
+            $this->marks->add($mark);
+            $mark->setProgrammes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMark(Mark $mark): self
+    {
+        if ($this->marks->removeElement($mark)) {
+            // set the owning side to null (unless already changed)
+            if ($mark->getProgrammes() === $this) {
+                $mark->setProgrammes(null);
+            }
+        }
 
         return $this;
     }
