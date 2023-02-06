@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
 
     public function __construct()
     {
-        $this->faker = Factory::create('fr_FR');
+        $this->faker = Factory::create("fr_FR");
     }
     public function load(ObjectManager $manager): void
     {
@@ -29,9 +29,11 @@ class AppFixtures extends Fixture
             $number++;
             $programme = new Programmes();
             $programme
-                ->setName('Débutant')
-                ->setDescription("Some quick example text to build on the card title and make up the bulk of the card's content.")
-                ->setImage('./assets/img/Carousel-' . $number . '.jpg');
+                ->setName("Débutant")
+                ->setDescription(
+                    "Some quick example text to build on the card title and make up the bulk of the card's content."
+                )
+                ->setImage("./assets/img/Carousel-" . $number . ".jpg");
 
             $programmes[] = $programme;
             $manager->persist($programme);
@@ -59,20 +61,22 @@ class AppFixtures extends Fixture
         $users = [];
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
-            $user->setFirstName($this->faker->firstName())
+            $user
+                ->setFirstName($this->faker->firstName())
                 ->setLastName($this->faker->lastName())
                 ->setEmail($this->faker->email())
-                ->setRoles(['ROLE_USER'])
-                ->setPlainPassword('password');
+                ->setRoles(["ROLE_USER"])
+                ->setPlainPassword("password");
             $users[] = $user;
             $manager->persist($user);
         }
 
         // Marks
         foreach ($programmes as $programme) {
-            for ($i=0; $i < mt_rand(0,4); $i++) { 
+            for ($i = 0; $i < mt_rand(0, 4); $i++) {
                 $mark = new Mark();
-                $mark->setMark(mt_rand(1, 5))
+                $mark
+                    ->setMark(mt_rand(1, 5))
                     ->setUser($users[mt_rand(0, count($users) - 1)])
                     ->setProgrammes($programme);
                 $manager->persist($mark);

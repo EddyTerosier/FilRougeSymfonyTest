@@ -2,18 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Mark;
+use App\Form\MarkType;
 use App\Entity\Programmes;
 use App\Form\ProgrammesType;
+use App\Repository\MarkRepository;
 use App\Repository\ProgrammesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ProgrammesController extends AbstractController
 {
@@ -186,11 +189,42 @@ class ProgrammesController extends AbstractController
         return $this->redirectToRoute('app_programmes');
     }
 
-    #[Route("/programme/{id}", name: "app_programme_description",methods: ['GET'])]
-    public function programmeShow(Programmes $programmes): Response
+    #[Route("/programme/{id}", name: "app_programme_description",methods: ['GET', 'POST'])]
+    public function programmeShow(Programmes $programmes, Request $request, MarkRepository $markRepository, EntityManagerInterface $manager): Response
     {
+        $mark = new Mark();
+        $form = $this->createForm(MarkType::class, $mark);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mark->setUser($this->getUser())
+                ->setProgrammes($programmes);
+            $existingMark = $markRepository->findOneBy([
+                'user' => $this->getUser(),
+                'programmes' => $programmes
+            ]);
+
+            if (!$existingMark) {
+                $manager->persist($mark);
+            } else {
+                $existingMark->setMark(
+                    $form->getData()->getMark()
+                );
+            }
+
+            $manager->flush();
+
+            $this->addFlash(
+               'success',
+               'Votre note a bien été prise en compte Merci !'
+            );
+
+            return $this->redirectToRoute('app_programme_description', ['id' => $programmes->getId()]);
+        }
+
         return $this->render("programmes/show.html.twig", [
-            "programmes" => $programmes
+            "programmes" => $programmes,
+            "form" => $form->createView()
         ]);
     }
 }
