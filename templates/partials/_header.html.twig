@@ -1,5 +1,8 @@
 <header>
 	<nav class="navbar navbar-expand-md navbar-light bg-custom">
+	<button id="topBtn" title="Go to top" onclick="topFunction()">
+  	<i class="fa fa-arrow-up"></i>
+	</button>	
 		<div class="container">
 			<Link to="/"><a id="0" onclick="toggleActiveClass()" href="{{ path('app_home') }}" class="navbar-brand"><img src="{{ asset('assets/img/Logo transparent.png')}}" alt="Logo" width="115px"/></a></Link>
 			<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"

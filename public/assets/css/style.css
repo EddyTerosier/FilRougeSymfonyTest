@@ -446,19 +446,24 @@ footer .social-media3 a:hover{
   opacity: 0!important;
   transition: 0.7s ease;
 }
+.banniere_3 .box.box2 {
+  transform: translateY(50%);
+  opacity: 0!important;
+  transition: 0.7s ease;
+}
 
 .banniere_4 .box {
   transform: translateX(-50%);
   opacity: 0!important;
   transition: 0.7s ease;
 }
-.banniere_4 .box.box1 {
+/* .banniere_4 .box.box1 {
   transform: translateY(200px);
   opacity: 0!important;
   transition: 0.7s ease;
-}
+} */
 
-.box.show,.box.box1.show {
+.box.show,.box.box1.show,.box.box2.show {
   transform: translateX(0);
   opacity: 1!important;
 }
@@ -566,3 +571,28 @@ footer .social-media3 a:hover{
 }
 
 /* ------------------------- Fin button -------------------------------- */
+
+/* ------------------ Début Bouton scroll top -------------- */
+ #topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background-color: #87ff65;
+  color: #35393C;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: solid 1px #87ff65;
+}
+
+#topBtn i {
+  font-size: 20px;
+}
+
+#topBtn:hover {
+  border: solid 1px #35393c;
+  background-color: #fff;
+  color : #35393C;
+}
+/* ------------------ Fin Bouton scroll top -------------- */

@@ -14,21 +14,21 @@ function checkboxes() {
   })
 }
 
-// window.addEventListener("scroll", checkboxes1)
+window.addEventListener("scroll", checkboxes1)
 
-// function checkboxes1() {
-//   const boxes = document.querySelectorAll(".box1")
-//   const triggerBottom = window.innerHeight / 4 * 3;
-//   boxes.forEach(box => {
-//     const boxTop = box.getBoundingClientRect().top
+function checkboxes1() {
+  const boxes = document.querySelectorAll(".box1")
+  const triggerBottom = window.innerHeight / 4 * 3;
+  boxes.forEach(box => {
+    const boxTop = box.getBoundingClientRect().top
 
-//     if (boxTop< triggerBottom) {
-//       box.classList.add("show")
-//     } else {
-//       box.classList.remove("show")
-//     }
-//   })
-// }
+    if (boxTop< triggerBottom) {
+      box.classList.add("show")
+    } else {
+      box.classList.remove("show")
+    }
+  })
+}
 
 // const activeState = (e)=>{
 //   const id = e.target.id
@@ -82,3 +82,23 @@ function toggleActiveClass() {
 }
 
 document.addEventListener('DOMContentLoaded', toggleActiveClass);
+
+window.onscroll = function() {
+  scrollFunction()
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ) {
+    document.getElementById("topBtn").style.display = "block";
+  } else {
+    document.getElementById("topBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+document.getElementById("topBtn").addEventListener("click", topFunction);
