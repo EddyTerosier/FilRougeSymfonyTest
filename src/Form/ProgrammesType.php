@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProgrammesType extends AbstractType
 {
@@ -46,8 +47,8 @@ class ProgrammesType extends AbstractType
                 ],
                 "constraints" => [new Assert\NotBlank()],
             ])
-            ->add("image", FileType::class, [
-                "mapped" => false,
+            ->add("imageFile", VichImageType::class, [
+                "label" => "Image du programme",
                 "required" => false,
                 "attr" => [
                     "class" => "form-control"

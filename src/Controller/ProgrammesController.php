@@ -60,34 +60,8 @@ class ProgrammesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get("image")->getData();
-            if ($imageFile) {
-                $originalFilename = pathinfo(
-                    $imageFile->getClientOriginalName(),
-                    PATHINFO_FILENAME
-                );
-                $safeFilename = transliterator_transliterate(
-                    "Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()",
-                    $originalFilename
-                );
-                $newFilename =
-                    $safeFilename .
-                    "-" .
-                    uniqid() .
-                    "." .
-                    $imageFile->guessExtension();
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter("upload_directory"),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $programmes->setImage($newFilename);
-            }
             $programmes = $form->getData();
+            // $programmes->setUser($this->getUser());
 
             $manager->persist($programmes); // comme le commit la consigne de l'envoyer est faite
             $manager->flush(); // comme le push on envoie vrmt les données
@@ -128,33 +102,6 @@ class ProgrammesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get("image")->getData();
-            if ($imageFile) {
-                $originalFilename = pathinfo(
-                    $imageFile->getClientOriginalName(),
-                    PATHINFO_FILENAME
-                );
-                $safeFilename = transliterator_transliterate(
-                    "Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()",
-                    $originalFilename
-                );
-                $newFilename =
-                    $safeFilename .
-                    "-" .
-                    uniqid() .
-                    "." .
-                    $imageFile->guessExtension();
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter("upload_directory"),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $programmes->setImage($newFilename);
-            }
             $programmes = $form->getData();
 
             $manager->persist($programmes); // comme le commit la consigne de l'envoyer est faite

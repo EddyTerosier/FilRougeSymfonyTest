@@ -24,7 +24,8 @@
         {% for programme in programmes %}
             <div class="col-md-4">
                 <div class="card mb-4 text-white bg-dark">
-                    <img class="card-img-top" src="{{programme.image}}"/>  
+                    {# <img class="card-img-top" src="{{programme.image}}"/> #}
+                    <img class="card-img-top" src="{{ vich_uploader_asset(programme, 'imageFile') }}">  
                     <div class="card-body">
                         <h5 class="card-title">{{programme.name}}</h5>
                         <p class="card-text">{{programme.description}}</p>
