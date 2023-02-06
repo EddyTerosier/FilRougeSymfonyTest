@@ -1,10 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - Dream-Gym{% endblock %}
+{% block title %}
+    Contact - Dream-Gym
+{% endblock %}
 
 {% block body %}
-<div class="container-connexion d-flex flex-column align-items-center">
-    <h1 class="mt-4">N'hésite pas à nous contacter {% if app.user %} {{app.user.firstName}} {% endif %} !</h1>
-{{ form(form) }}
-</div>
+    <div class="container-connexion d-flex flex-column align-items-center">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1 class="mt-4">
+            N'hésite pas à nous contacter{% if app.user %}
+                {{ app.user.firstName }}
+            {% endif %}!
+        </h1>
+        <div class="container col-md-2 mx-auto">
+            {{ form(form) }}
+        </div>
+        <hr class="border-light w-100 my-5" />
+    </div>
 {% endblock %}
