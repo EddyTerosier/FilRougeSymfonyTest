@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Dream-Gym{% endblock %}
+
+{% block body %}
+<div class="container-connexion d-flex flex-column align-items-center">
+    <h1 class="mt-4">N'hésite pas à nous contacter {% if app.user %} {{app.user.firstName}} {% endif %} !</h1>
+{{ form(form) }}
+</div>
+{% endblock %}

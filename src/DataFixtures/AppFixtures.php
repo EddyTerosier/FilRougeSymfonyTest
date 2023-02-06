@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Programmes;
 use App\Entity\User;
 use App\Entity\Mark;
@@ -72,17 +73,29 @@ class AppFixtures extends Fixture
         }
 
         // Marks
-        foreach ($programmes as $programme) {
-            for ($i = 0; $i < mt_rand(0, 4); $i++) {
-                $mark = new Mark();
-                $mark
-                    ->setMark(mt_rand(1, 5))
-                    ->setUser($users[mt_rand(0, count($users) - 1)])
-                    ->setProgrammes($programme);
-                $manager->persist($mark);
-            }
-        }
+    //     foreach ($programmes as $programme) {
+    //         for ($i = 0; $i < mt_rand(0, 4); $i++) {
+    //             $mark = new Mark();
+    //             $mark
+    //                 ->setMark(mt_rand(1, 5))
+    //                 ->setUser($users[mt_rand(0, count($users) - 1)])
+    //                 ->setProgrammes($programme);
+    //             $manager->persist($mark);
+    //         }
+    //     }
 
-        $manager->flush();
+    // FORMULAIRE CONTACT
+    for ($i=0; $i < 5; $i++) { 
+        $contact = new Contact();
+        $contact->setFirstName($this->faker->firstName())
+        ->setLastName($this->faker->lastName())
+        ->setEmail($this->faker->email())
+        ->setSubject("Demande n°" . ($i +1))
+        ->setMessage($this->faker->text());
+
+        $manager->persist($contact);
+    }
+
+    $manager->flush();
     }
 }
