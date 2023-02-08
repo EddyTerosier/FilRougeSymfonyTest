@@ -3,6 +3,11 @@
         Mes informations
     </h1>
     <div class="list-group my-5 w-75">
+        {% if is_granted ('ROLE_ADMIN') %}
+        <a href="{{path('app_admin', {id: app.user.id})}}" class="list-group-item list-group-item-action bg-secondary text-white">
+            Acceder à ma page Admin
+        </a>
+        {% endif %}
         <a href="{{path('app_user', {id:app.user.id})}}" class="list-group-item list-group-item-action bg-secondary text-white">
             Modifier mes informations
         </a>
