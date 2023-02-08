@@ -21,15 +21,13 @@ class ProgrammesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            ImageField::new('imageName')
+            TextField::new('name', 'Nom du programme'),
+            ImageField::new('imageName', 'Image')
             ->setBasePath('upload/programmes/')
-            ->setUploadDir('public/upload/')
+            ->setUploadDir('public/upload/programmes')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
             ->setRequired(false),
-            TextareaField::new('description'),
-            MoneyField::new('price')
-            ->setCurrency('EUR')
+            TextareaField::new('description','Description du programme')
             
         ];
     }

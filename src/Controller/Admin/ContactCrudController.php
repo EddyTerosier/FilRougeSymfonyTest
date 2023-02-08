@@ -21,12 +21,12 @@ class ContactCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            TextField::new('firstName'),
-            TextField::new('lastName'),
+            TextField::new('lastName', 'Nom'),
+            TextField::new('firstName', 'Prénom'),
             TextField::new('email'),
-            TextField::new('subject'),
+            TextField::new('subject', 'Objet'),
             TextEditorField::new('message')->setFormType(CKEditorType::class),
-            DateTimeField::new('createdAt')
+            DateTimeField::new('createdAt', 'Créer à')
         ];
     }
 }
