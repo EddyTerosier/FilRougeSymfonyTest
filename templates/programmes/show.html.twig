@@ -20,6 +20,8 @@
             <br>
             {{programmes.description}}
             </p>
+            <br>
+            <a href="{{ programmes.paymentLink }}" class="btn btn-outline-custom btn-sm btn-read-more">Acheter le programme</a>
             <p class="my-4">
                 Note sur 5 : 
                 {% for i in 0..programmes.average %}

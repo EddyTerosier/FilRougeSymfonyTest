@@ -45,6 +45,12 @@ class Programmes
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $stripeId = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $paymentLink = null;
+
     public function __construct()
     {
         $this->marks = new ArrayCollection();
@@ -189,5 +195,29 @@ class Programmes
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getStripeId(): ?string
+    {
+        return $this->stripeId;
+    }
+
+    public function setStripeId(string $stripeId): self
+    {
+        $this->stripeId = $stripeId;
+
+        return $this;
+    }
+
+    public function getPaymentLink(): ?string
+    {
+        return $this->paymentLink;
+    }
+
+    public function setPaymentLink(string $paymentLink): self
+    {
+        $this->paymentLink = $paymentLink;
+
+        return $this;
     }
 }

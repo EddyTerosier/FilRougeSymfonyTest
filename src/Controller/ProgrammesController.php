@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Mark;
+use App\Entity\Plan;
 use App\Form\MarkType;
 use App\Entity\Programmes;
 use App\Form\ProgrammesType;
 use App\Repository\MarkRepository;
 use App\Repository\ProgrammesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,10 +30,13 @@ class ProgrammesController extends AbstractController
      * @return Response
      */
     #[Route("/programmes", name: "app_programmes")]
-    public function index(ProgrammesRepository $repository): Response
+    public function index(ProgrammesRepository $repository, ManagerRegistry $doctrine): Response
     {
+        $plans = $doctrine->getRepository(Plan::class)->findAll();
+
         return $this->render("programmes/index.html.twig", [
             "programmes" => $repository->findAll(),
+            "plans" => $plans
         ]);
     }
 
@@ -137,8 +142,9 @@ class ProgrammesController extends AbstractController
     }
 
     #[Route("/programme/{id}", name: "app_programme_description",methods: ['GET', 'POST'])]
-    public function programmeShow(Programmes $programmes, Request $request, MarkRepository $markRepository, EntityManagerInterface $manager): Response
+    public function programmeShow(Programmes $programmes, Request $request, MarkRepository $markRepository, EntityManagerInterface $manager, ManagerRegistry $doctrine): Response
     {
+        $plans = $doctrine->getRepository(Plan::class)->findAll();
         $mark = new Mark();
         $form = $this->createForm(MarkType::class, $mark);
         $form->handleRequest($request);
@@ -171,7 +177,8 @@ class ProgrammesController extends AbstractController
 
         return $this->render("programmes/show.html.twig", [
             "programmes" => $programmes,
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "plans" => $plans
         ]);
     }
 }

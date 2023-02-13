@@ -48,6 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
+        $this->subscriptions = new ArrayCollection();
     }
 
     #[ORM\Column(length: 50)]
@@ -57,6 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mark::class, orphanRemoval: true)]
     private Collection $marks;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Subscription::class, orphanRemoval: true)]
+    private Collection $subscriptions;
 
     public function getId(): ?int
     {
@@ -200,6 +204,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($mark->getUser() === $this) {
                 $mark->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Subscription>
+     */
+    public function getSubscriptions(): Collection
+    {
+        return $this->subscriptions;
+    }
+
+    public function addSubscription(Subscription $subscription): self
+    {
+        if (!$this->subscriptions->contains($subscription)) {
+            $this->subscriptions->add($subscription);
+            $subscription->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscription(Subscription $subscription): self
+    {
+        if ($this->subscriptions->removeElement($subscription)) {
+            // set the owning side to null (unless already changed)
+            if ($subscription->getUser() === $this) {
+                $subscription->setUser(null);
             }
         }
 

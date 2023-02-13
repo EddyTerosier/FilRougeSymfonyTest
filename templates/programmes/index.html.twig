@@ -36,6 +36,7 @@
                         {% endfor %}
                         </p>
                         <a href="{{ path('app_programme_description', {id: programme.id})}}" class="btn btn-outline-custom btn-sm btn-read-more">Voir plus</a>
+                        <a href="{{ programme.paymentLink }}" class="btn btn-outline-custom btn-sm btn-read-more">Acheter le programme</a>
                         {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{path('programmes_edit', {id: programme.id})}}" class="btn btn-outline-custom btn-sm btn-read-more">Modifier</a>
                         <a href="{{path('programmes_delete', {id: programme.id})}}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce programme ?');" class="btn btn-outline-custom btn-sm btn-read-more">Supprimer</a>
