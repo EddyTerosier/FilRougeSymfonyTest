@@ -30,13 +30,11 @@ class ProgrammesController extends AbstractController
      * @return Response
      */
     #[Route("/programmes", name: "app_programmes")]
-    public function index(ProgrammesRepository $repository, ManagerRegistry $doctrine): Response
+    public function index(ProgrammesRepository $repository): Response
     {
-        $plans = $doctrine->getRepository(Plan::class)->findAll();
 
         return $this->render("programmes/index.html.twig", [
-            "programmes" => $repository->findAll(),
-            "plans" => $plans
+            "programmes" => $repository->findAll()
         ]);
     }
 
