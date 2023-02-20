@@ -45,10 +45,10 @@ class Programmes
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $stripeId = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $paymentLink = null;
 
     public function __construct()
