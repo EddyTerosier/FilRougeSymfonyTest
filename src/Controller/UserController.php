@@ -54,7 +54,7 @@ class UserController extends AbstractController
                 $manager->flush();
 
                 $this->addFlash("success", "Les infos ont été modifiées");
-                return $this->redirectToRoute("app_programmes");
+                return $this->redirectToRoute("app_account", ['id' => $user->getId()]);
             } else {
                 $this->addFlash("warning", "Le mot de passe est incorrect");
             }

@@ -5,6 +5,12 @@
 {% block body %}
     <div class="container-connexion d-flex flex-column align-items-center">
         <h1 class="mt-4">Bienvenue sur ton compte {{app.user.firstName}}</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4 text-center">
+                {{message}}
+            </div>
+            
+        {% endfor %}
         <div class="container d-flex col-md-12">
         {% include 'partials/_side_barUser.html.twig' %}
         <div class="col-md-8 my-5">
